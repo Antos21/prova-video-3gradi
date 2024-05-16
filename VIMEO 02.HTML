@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Mio Sito Web</title>
+</head>
+<body>
+    <h1>Benvenuto sul Mio Sito Web!</h1>
+    
+    <!-- Elemento <div> per contenere il player Vimeo -->
+    <div id="video-container">
+        <iframe title="vimeo-player" src="https://player.vimeo.com/video/946969186?h=2840273db2" width="640" height="274" frameborder="0" allow="gyroscope; accelerometer" allowfullscreen></iframe>
+    </div>
+
+    <!-- Codice JavaScript per gestire l'interattività del video -->
+    <script>
+        // Funzione per caricare e controllare il video 360 da Vimeo
+        function loadInteractiveVideo() {
+            // ID del video su Vimeo
+            var vimeoVideoID = 946969186;
+            
+            // Crea un nuovo player Vimeo
+            var player = new Vimeo.Player('video-container', {
+                id: vimeoVideoID,
+                autoplay: true,
+                loop: true
+            });
+
+            // Aggiungi eventi per gestire l'interazione dell'utente e cambiare le inquadrature del video
+            player.on('timeupdate', function(event) {
+                var windowWidthHalf = window.innerWidth / 2;
+                var mouseX = event.clientX;
+
+                if (mouseX > windowWidthHalf) {
+                    // Codice per cambiare l'inquadratura del video verso destra
+                    console.log('Spettatore si sta girando verso destra');
+                } else {
+                    // Codice per cambiare l'inquadratura del video verso sinistra
+                    console.log('Spettatore si sta girando verso sinistra');
+                }
+            });
+        }
+
+        // Chiama la funzione per caricare e controllare il video 360
+        loadInteractiveVideo();
+    </script>
+</body>
+</html>
+
+
